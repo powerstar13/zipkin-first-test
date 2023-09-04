@@ -1,0 +1,10 @@
+### Create user
+POST localhost:8080/user
+Content-Type: application/json
+
+{
+  "name": "test-user"
+}
+
+### Error test
+GET localhost:8080/fail

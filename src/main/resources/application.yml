@@ -1,6 +1,29 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: first-test-app
+  datasource:
+    url: jdbc:postgresql://localhost:5432/zipkin_test
+    username: postgres
+    password: mysecretpassword
+    hikari:
+      maximum-pool-size: 1
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    template:
+      exchange: topic
+    ssl:
+      enabled: false
 
 management:
   tracing:
@@ -9,16 +32,6 @@ management:
     propagation:
       consume: b3
       produce: b3_multi
-  endpoints:
-    web:
-      exposure:
-        include: prometheus
-  metrics:
-    distribution:
-      percentiles-histogram:
-        http:
-          server:
-            requests: true
   zipkin:
     tracing:
       endpoint: "http://localhost:9411/api/v2/spans"
